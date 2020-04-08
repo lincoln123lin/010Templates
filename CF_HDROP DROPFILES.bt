@@ -1,0 +1,32 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.1 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+typedef struct tagPOINT {
+  LONG x<fgcolor=cBlack, bgcolor=0x0000FF>;
+  LONG y<fgcolor=cBlack, bgcolor=0x0000FF>;
+} POINT;
+
+typedef struct _DROPFILES {
+  DWORD pFiles<fgcolor=cBlack, bgcolor=0x00FF00>;
+  POINT pt;
+  int  fNC<fgcolor=cWhite, bgcolor=0xF00F00, comment="On windows data types documentation, they say BOOL is a type of int">;
+  int  fWide<fgcolor=cWhite, bgcolor=0x0F0F00>;
+} DROPFILES;
+
+struct {
+    DROPFILES df;
+    wchar_t files[]<fgcolor=cBlack, bgcolor=0x0FFFFF, comment="WStrstr">;
+if (ReadByte(FTell())!=0)
+    wchar_t files2[] <fgcolor=cWhite, bgcolor=0x0E0FFF,comment="Two files maximum for this template; Add more of this variable with different name to add more files">;
+    char EOF[2]<fgcolor=cWhite, bgcolor=0x000000,comment="Terminates with 2 null chars">;
+} CF_HDROP<open=true>;
+

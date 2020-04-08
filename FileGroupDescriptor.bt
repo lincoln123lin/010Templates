@@ -1,0 +1,40 @@
+//------------------------------------------------
+//--- 010 Editor v10.0.1 Binary Template
+//
+//      File: FileGroupDescriptor_Windows
+//   Authors: Lincoln Lin
+//   Version: 1.0
+//   Purpose: Reading Clipboard Data Format FileGroupDescriptor
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+typedef struct _POINTL {
+  LONG x;
+  LONG y;
+} POINTL;
+
+typedef struct {
+  INT32 cx;
+  INT32 cy;
+} SIZEL;
+
+typedef struct _FILEDESCRIPTORW {
+  DWORD    dwFlags;
+  CHAR     clsid[16] <comment="128-bit read as hex value to identify the file - CLSID; system takes input as byte">;
+  SIZEL    sizel;
+  POINTL   pointl;
+  DWORD    dwFileAttributes; 
+  FILETIME ftCreationTime;
+  FILETIME ftLastAccessTime;
+  FILETIME ftLastWriteTime;
+  DWORD    nFileSizeHigh;
+  DWORD    nFileSizeLow;
+  wchar_t    cFileName[256]<comment="Taking MAX_PATH = 256;">;
+} FILEDESCRIPTORW;
+
+struct _FILEGROUPDESCRIPTORW {
+  UINT            cItems<fgcolor=cBlack, bgcolor=0x0000FF>; 
+  FILEDESCRIPTORW fgd[1];
+} FILEGROUPDESCRIPTORW<comment="*LPFILEGROUPDESCRIPTORW">;
